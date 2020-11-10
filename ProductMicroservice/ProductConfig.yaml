@@ -1,0 +1,33 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productconfig-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ProductConfig
+  template:
+    metadata:
+      labels:
+        app: ProductConfig
+    spec:
+      containers:
+      - name: productrepos
+        image: mfpeacr.azurecr.io/productrepos:latest
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: configsn
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: productconfig
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: ProductConfig
