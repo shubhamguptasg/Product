@@ -13,10 +13,8 @@ namespace ProductMicroservice
 {
     public class Program
     {
-        public static void Main(string[] args)
+       public static void Main(string[] args)
         {
-            var log4netRepository = log4net.LogManager.GetRepository(Assembly.GetEntryAssembly());
-            log4net.Config.XmlConfigurator.Configure(log4netRepository, new FileInfo("Log4Net.config"));
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -25,11 +23,13 @@ namespace ProductMicroservice
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>()
-                    .ConfigureLogging((hostingContext, logging) =>
-                    {
-                        logging.AddLog4Net();
-                        logging.SetMinimumLevel(LogLevel.Debug);
-                    });
+                     .ConfigureLogging((hostingContext, logging) =>
+                     {
+                         logging.AddLog4Net();
+
+                         logging.SetMinimumLevel(LogLevel.Debug);
+
+                     });
                 });
     }
 }
