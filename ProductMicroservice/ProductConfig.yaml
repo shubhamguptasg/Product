@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: productrepos
-        image: mfpeacr.azurecr.io/productrepos:latest
+        image: mfpeacr1.azurecr.io/productrepos:latest
         ports:
         - containerPort: 8080
       imagePullSecrets:
