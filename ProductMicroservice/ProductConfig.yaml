@@ -14,11 +14,11 @@ spec:
     spec:
       containers:
       - name: productrepos
-        image: mfpeacr.azurecr.io/productrepos:latest
+        image: containerr1.azurecr.io/productrepos:latest
         ports:
         - containerPort: 8080
       imagePullSecrets:
-      - name: configsn
+      - name: dsconfigsn
 
 ---
 apiVersion: v1
