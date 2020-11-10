@@ -27,6 +27,7 @@ namespace ProductMicroservice
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+          
 
             services.AddCors(c =>
             {
@@ -35,7 +36,7 @@ namespace ProductMicroservice
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "product", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "admin", Version = "v1" });
             });
 
             services.AddScoped<IProductRepository, ProductRepository>();
@@ -49,13 +50,13 @@ namespace ProductMicroservice
                 app.UseDeveloperExceptionPage();
             }
 
-            loggerFactory.AddLog4Net();
-
             app.UseRouting();
 
             app.UseCors(options => options.AllowAnyOrigin());
 
             app.UseAuthorization();
+
+            loggerFactory.AddLog4Net();
 
             app.UseEndpoints(endpoints =>
             {
@@ -66,7 +67,7 @@ namespace ProductMicroservice
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "product");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "admin");
             });
         }
     }
